@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Upload a file</title>
+	<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<style type="text/css" media='screen'>
+		#first{
+				
+		}		
+		#uploader{
+			width: 100%;
+		}
+		html, body  {
+		    height: 100%;
+		}
+
+	</style>
+	
+</head>
+
+<body>
+	<div class="container fill">
+	    <div class="col-sm-6" id = "first" style="background-color: green;
+			">
+			<h4 style="margin-bottom: 1em;">Select files from your computer</h4>
+			<center><input type="file" name="files" id="fileButton"></center><br>	
+			<progress value="0" max="100" id="uploader">0%</progress>	
+			<form action="/retrive">
+				<center><button type="submit" class="btn btn-success">Get Result</button></center>
+			</form>	
+		</div>
+
+    </div>
+	
+	<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-storage.js"></script>
+  	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyAhx93vdPEWz707HXHVIibB4v9xFqlaSag",
+	    authDomain: "friendlychat-3d8f7.firebaseapp.com",
+	    databaseURL: "https://friendlychat-3d8f7.firebaseio.com",
+	    projectId: "friendlychat-3d8f7",
+	    storageBucket: "friendlychat-3d8f7.appspot.com",
+	    messagingSenderId: "54764554067"
+	  };
+	  firebase.initializeApp(config);
+	  
+	  var uploader = document.getElementById('uploader');
+	  var filebutton  = document.getElementById('fileButton')
+
+	  filebutton.addEventListener('change',function(e){
+	  	//get file
+	  	var file = e.target.files[0];
+	  	var anonymous = "anonymous";
+	  	var database = firebase.database(); 
+	  	//create stirage ref
+	  	var storagere = firebase.storage().ref('Images/' + file.name);
+	  	  
+	  	var databaseval = firebase.database().ref().child('imgPath');
+	  	
+	  	
+
+	  	//upload file
+	  	var task = storagere.put(file);
+	  	var imagegpath="";
+
+	  	task.then((snapshot) => {
+		    imagegpath = (snapshot.downloadURL);
+		    var data = {
+		  		name: "webimage",
+		  		photoUrl:imagegpath
+		  	};
+		    // console.log(imagegpath);
+		    databaseval.push(data);
+
+		});
+		 	
+	  	//update progress bar
+
+	  	task.on('state_changed',
+	  		function progress(snapshot){
+	  			var percent = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+	  			uploader.value = percent;
+	  		},
+	  		function error(err){
+
+	  		},
+	  		function complete(snapshot){
+	  			// var database = databaseval.on('value',snap => console.log(snap.val()));
+	  	// 		Object.keys(obj).forEach(function(key) {
+				//   var value = obj[key];
+				//   // do what you need to here
+				// });
+	  			console.log(imagegpath);
+	  		}
+	  		);
+	  });
+
+	</script> 
+</body>
+</html>

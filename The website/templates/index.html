@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<meta name="author" content="Kodinger">
+		<meta name="keyword" content="Kodinger, template, html5, css3, bootstrap4">
+		<meta name="description" content="HTML5 and CSS3 Template Based on Bootstrap 4">
+		<title>SUDOS</title>
+		<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+		<link rel="stylesheet" href="/static/ionicons/css/ionicons.min.css">
+		<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/static/sweetalert/dist/sweetalert.css">
+		<link rel="stylesheet" href="/static/css/stisla.css">
+		<style type="text/css">
+		.btn{
+			cursor: pointer; 
+		}
+		.btn:hover{
+			background-color: #fff;
+    		color: #000;
+		}
+		</style>
+
+	</head>
+
+	<body>
+		<nav class="navbar navbar-expand-lg main-navbar">
+			<div class="container-fluid">			
+			  <a class="navbar-brand" href="#">
+			  	<img src="/static/img/logo-light.png" alt="Logo">
+			  </a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon">
+			    	<i class="ion-navicon"></i>
+			    </span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarNav">
+				  <div class="mr-auto"></div>
+			    <ul class="navbar-nav">
+			      <li class="nav-item active">
+			        <a class="nav-link smooth-link" href="#hero">Home</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link smooth-link" href="#features">Detect Text</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link smooth-link" href="#blog">PDF to Word</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link smooth-link" href="#project">About Us</a>
+			      </li>
+			      <li class="nav-item">
+			        <a href="#contact" class="nav-link smooth-link">Need Help?</a>
+			      </li>
+			    </ul>
+			    <!-- <form class="form-inline">
+				    <a href="/login" class="btn smooth-link align-middle btn-primary">Login / Sign Up</a>
+			    </form> -->
+			  </div>
+		  </div>
+		</nav>
+		<section class="hero bg-overlay" id="hero" data-bg="/static/img/background.jpg">
+			<div class="text py-5">
+				<h1>We are <span class="bold">SUDOS</span>, We provide <span class="bold">Smart Editor</span>.</h1><br>
+				<p>A tool for fetching and editing information from scanned document mainly image type.</p>
+				<div class="cta">
+					<a href="#features" class="btn btn-primary smooth-link">Start Detection</a>	
+				</div>
+			</div>
+		</section>
+
+		<section class="padding" id="features">
+			<div class="container">
+				<center><h2 class="section-title"> OCR </h2></center><br>
+				<div class="row">
+					<div class="col-sm-12" id = "first">
+						
+						<center><input type="file" name="files" id="fileButton"></center><br>	
+						<progress value="0" max="100" id="uploader" class="col-sm-12">0%</progress>	
+						<form action="/retrive">
+							<center><button type="submit" class="btn btn-dark">Get Result</button></center>
+						</form>	
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- <section class="padding" id="features">
+			<div class="container">
+				<center><h2 class="section-title"> OCR Template Matching</h2></center><br>
+				<div class="row">
+					<div class="col-sm-12" id = "first">
+						
+						<center><input type="file" id="fileButton2"></center><br>	
+						<progress value="0" max="100" id="uploader2" class="col-sm-12">0%</progress>	
+						<form action="/template_match">
+							<center><button type="submit" class="btn btn-dark">Get Result</button></center>
+						</form>	
+					</div>
+				</div>
+			</div>
+		</section> -->
+
+		<section class="padding bg-grey" id="blog">
+			<div class="container">
+				<center><h2 class="section-title">PDF to Word Converter</h2></center><br>
+				<div>
+					<form method="POST" action="/pdf_to_word_result" enctype=multipart/form-data>
+					    <div class="form-group" align="center">
+					        <input type="file"  name = "file" accept="pdf/*">
+					        <br><br>
+					        <input type="submit" id = "dwn-btn" value="Submit" class="btn btn-dark" />
+					    </div>
+					</form>
+				</div>
+			</div>
+		</section>
+
+
+		<h2 class="section-title text-center">About Us</h2>
+		<section class="bg-overlay padding" id="project" data-bg="/static/img/projects.jpeg">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6 col-md-4">
+			            <div class="card  mb-3">                  
+			            	<div>
+			            		<img src="/static/img/hero.jpeg" class="col-sm-12" style="border-radius: 50%;height:16em;">
+			            	</div>          
+			                <div class="card-body">
+			                    <h4 class="card-title">Simran Bhojwani</h4>
+			                    <p class="card-text"><h5>+91 9730645844</h5></p>
+			                    <p class="card-text"><h5>2015simran.bhojwani@ves.ac.in</h5></p>
+			                </div>
+			            </div>
+        			</div>
+
+        			<div class="col-sm-6 col-md-4">
+			            <div class="card  mb-3">                  
+			            	<div >
+			            		<img src="/static/img/riya.jpg" class="col-sm-12" style="border-radius: 50%;height:16em;">
+			            	</div>          
+			                <div class="card-body">
+			                    <h4 class="card-title">Riya Karia</h4>
+			                    <p class="card-text"><h5>+91 9922892244</h5></p>
+			                    <p class="card-text"><h5>2015riya.karia@ves.ac.in</h5></p>
+			                </div>
+			            </div>
+        			</div>
+
+
+        			<div class="col-sm-6 col-md-4">
+			            <div class="card  mb-3">                  
+			            	<div>
+			            		<img src="/static/img/nausheen.jpg" class="col-sm-12" style="border-radius: 50%;height:16em;">
+			            	</div>          
+			                <div class="card-body">
+			                    <h4 class="card-title">Nausheen Sayed</h4>
+			                    <p class="card-text"><h5>+91 7498278212</h5></p>
+			                    <p class="card-text"><h5>2015nausheen.asif@ves.ac.in</h5></p>
+			                </div>
+			            </div>
+        			</div>
+
+
+        			<div class="col-sm-6 col-md-4">
+			            <div class="card  mb-3">                  
+			            	<div>
+			            		<img src="/static/img/harsh.jpg" class="col-sm-12" style="border-radius: 50%;height:16em;">
+			            	</div>          
+			                <div class="card-body">
+			                    <h4 class="card-title">Harsh Jain</h4>
+			                    <p class="card-text"><h5>+91 9619364367</h5></p>
+			                    <p class="card-text"><h5>2015harsh.jain@ves.ac.in</h5></p>
+			                </div>
+			            </div>
+        			</div>
+
+        			<div class="col-sm-6 col-md-4">
+			            <div class="card  mb-3">                  
+			            	<div>
+			            		<img src="/static/img/vishal.jpg" class="col-sm-12" style="border-radius: 50%;height:16em;">
+			            	</div>          
+			                <div class="card-body">
+			                    <h4 class="card-title">Vishal Israni</h4>
+			                    <p class="card-text"><h5>+91 8698552370</h5></p>
+			                    <p class="card-text"><h5>2015vishal.israni@ves.ac.in</h5></p>
+			                </div>
+			            </div>
+        			</div>
+
+        			<div class="col-sm-6 col-md-4">
+			            <div class="card  mb-3">                  
+			            	<div>
+			            		<img src="/static/img/Abid.png" class="col-sm-12" style="border-radius: 50%;height:16em;">
+			            	</div>          
+			                <div class="card-body">
+			                    <h4 class="card-title">AICTE</h4>
+			                    <p class="card-text"><h5>+91 9920517990</h5></p>
+			                    <p class="card-text"><h5>2015abid.inamdar@ves.ac.in</h5></p>
+			                </div>
+			            </div>
+        			</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="padding bg-grey" id="contact">
+			<div class="container">
+				<h2 class="section-title text-center">Contact Us</h2>
+
+				<p class="section-lead text-center text-muted">Send us your inquiry, we will help you and reply as soon as possible</p>
+				<div class="section-body">				
+					<div class="row col-spacing">
+						<div class="col-12 col-md-5">
+							<p class="contact-text">You can send us something like a question or project, we are open 09:00 to 17:00.</p>
+							<ul class="contact-icon">
+								<li><i class="ion ion-ios-telephone"></i> <div>011-26131576-78,80</div></li>
+								<li><i class="ion ion-ios-email"></i> <div></div></li>
+							</ul>
+							
+								
+							
+						</div>
+						<!-- <div class="col-12 col-md-7">
+							<form class="contact row" id="contact-form">
+								<div class="form-group col-6">
+									<input type="text" class="form-control" placeholder="Name" name="name" required="">
+								</div>
+								<div class="form-group col-6">
+									<input type="email" class="form-control" placeholder="Email" name="email" required="">
+								</div>
+								<div class="form-group col-12">
+									<input type="text" class="form-control" placeholder="Subject" name="subject" required="">
+								</div>
+								<div class="form-group col-12">
+									<textarea class="form-control" placeholder="Message" name="message" required=""></textarea>
+								</div>
+								<div class="form-group col-12 mt-2">
+									<button class="btn btn-primary">
+										Send Message
+									</button>
+								</div>
+							</form>
+						</div>
+					</div> -->
+				</div>
+			</div>
+		</section>
+
+		<footer>
+			<div class="container">
+				<p>
+					Copyright &copy; 2018 Smart India Hackathon
+				</p>
+				
+			</div>
+		</footer>
+
+		<script src="/static/js/jquery.min.js"></script>
+		<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/static/js/jquery.easeScroll.js"></script>
+		<script src="/static/sweetalert/dist/sweetalert.min.js"></script>
+		<script src="/static/js/stisla.js"></script>
+
+		<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-storage.js"></script>
+  	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyAhx93vdPEWz707HXHVIibB4v9xFqlaSag",
+	    authDomain: "friendlychat-3d8f7.firebaseapp.com",
+	    databaseURL: "https://friendlychat-3d8f7.firebaseio.com",
+	    projectId: "friendlychat-3d8f7",
+	    storageBucket: "friendlychat-3d8f7.appspot.com",
+	    messagingSenderId: "54764554067"
+	  };
+	  firebase.initializeApp(config);
+	  
+	  var uploader = document.getElementById('uploader');
+	  var filebutton  = document.getElementById('fileButton')
+
+	  filebutton.addEventListener('change',function(e){
+	  	//get file
+	  	var file = e.target.files[0];
+	  	var anonymous = "anonymous";
+	  	var database = firebase.database(); 
+	  	//create stirage ref
+	  	var storagere = firebase.storage().ref('Images/' + file.name);
+	  	  
+	  	var databaseval = firebase.database().ref().child('imgPath');
+	  	
+	  	
+
+	  	//upload file
+	  	var task = storagere.put(file);
+	  	var imagegpath="";
+
+	  	task.then((snapshot) => {
+		    imagegpath = (snapshot.downloadURL);
+		    var data = {
+		  		name: "webimage",
+		  		photoUrl:imagegpath
+		  	};
+		    // console.log(imagegpath);
+		    databaseval.push(data);
+
+		});
+		 	
+	  	//update progress bar
+
+	  	task.on('state_changed',
+	  		function progress(snapshot){
+	  			var percent = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+	  			uploader.value = percent;
+	  		},
+	  		function error(err){
+
+	  		},
+	  		function complete(snapshot){
+	  			// var database = databaseval.on('value',snap => console.log(snap.val()));
+	  	// 		Object.keys(obj).forEach(function(key) {
+				//   var value = obj[key];
+				//   // do what you need to here
+				// });
+	  			console.log(imagegpath);
+	  		}
+	  		);
+	  	});
+
+		function download(uri, name) {
+			var link = document.createElement('a');
+			link.download = name;
+			link.href = uri;
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+			delete link;
+			// element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+			// element.setAttribute('download', filename);
+
+			// element.style.display = 'none';
+			// document.body.appendChild(element);
+
+			// element.click();
+
+			// document.body.removeChild(element);
+		}
+
+		// document.getElementById("dwn-btn").addEventListener("click", function(){
+		//     // Generate download of hello.txt file with some content
+		//     var text = "Abid Harsh Riya Simran Nausheen";
+		//     var filename = "output.txt";
+		    
+		//     download("https://www.pythonanywhere.com/user/InamdarAbid/files/home/InamdarAbid/Api/pdfs/outputGenerated.txt",filename);
+		// }, false);
+
+	</script>
+
+
+	<!-- For template matching -->
+	<script>
+	  // Initialize Firebase
+	  
+	  var uploader2 = document.getElementById('uploader2');
+	  var filebutton2  = document.getElementById('fileButton2')
+
+	  filebutton2.addEventListener('change',function(e){
+	  	//get file
+	  	var file = e.target.files[0];
+	  	var anonymous = "anonymous";
+	  	var database = firebase.database(); 
+	  	//create stirage ref
+	  	var storagere = firebase.storage().ref('Images/' + file.name);
+	  	  
+	  	var databaseval = firebase.database().ref().child('imgPath');
+	  	
+	  	
+
+	  	//upload file
+	  	var task = storagere.put(file);
+	  	var imagegpath="";
+
+	  	task.then((snapshot) => {
+		    imagegpath = (snapshot.downloadURL);
+		    var data = {
+		  		name: "webimage",
+		  		photoUrl:imagegpath
+		  	};
+		    // console.log(imagegpath);
+		    databaseval.push(data);
+
+		});
+		 	
+	  	//update progress bar
+
+	  	task.on('state_changed',
+	  		function progress(snapshot){
+	  			var percent = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+	  			uploader2.value = percent;
+	  		},
+	  		function error(err){
+
+	  		},
+	  		function complete(snapshot){
+	  			// var database = databaseval.on('value',snap => console.log(snap.val()));
+	  	// 		Object.keys(obj).forEach(function(key) {
+				//   var value = obj[key];
+				//   // do what you need to here
+				// });
+	  			console.log(imagegpath);
+	  		}
+	  		);
+	  	});
+
+		function download(uri, name) {
+			var link = document.createElement('a');
+			link.download = name;
+			link.href = uri;
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+			delete link;
+			// element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+			// element.setAttribute('download', filename);
+
+			// element.style.display = 'none';
+			// document.body.appendChild(element);
+
+			// element.click();
+
+			// document.body.removeChild(element);
+		}
+
+		// document.getElementById("dwn-btn").addEventListener("click", function(){
+		//     // Generate download of hello.txt file with some content
+		//     var text = "Abid Harsh Riya Simran Nausheen";
+		//     var filename = "output.txt";
+		    
+		//     download("https://www.pythonanywhere.com/user/InamdarAbid/files/home/InamdarAbid/Api/pdfs/outputGenerated.txt",filename);
+		// }, false);
+
+	</script>
+	</body>
+</html>
